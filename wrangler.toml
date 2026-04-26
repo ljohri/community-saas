@@ -7,6 +7,11 @@ pages_build_output_dir = "dist"
 # Set the Firebase project ID here so the worker can verify ID tokens.
 # Override per environment (e.g. staging/production) below.
 FIREBASE_PROJECT_ID = "sfbc-website"
+VITE_FIREBASE_API_KEY = "AIzaSyAf5IisqgGiXrc0yaKhRAqP3n8nqOq843g"
+VITE_FIREBASE_AUTH_DOMAIN = "sfbc-website.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID = "sfbc-website"
+VITE_FIREBASE_APP_ID = "1:53102901555:web:c000b6b1b0a9974060e646"
+VITE_APP_NAME = "SFBC Website"
 
 # D1 binding. Create the database with:
 #   wrangler d1 create community-site-db
