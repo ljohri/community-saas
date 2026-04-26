@@ -22,6 +22,10 @@ database_name = "community-site-db"
 database_id = "2aaf3d92-9847-428c-aaeb-d57dde35dd09"
 migrations_dir = "migrations"
 
+[[r2_buckets]]
+binding = "CONTENT_BUCKET"
+bucket_name = "sfbc"
+
 # Optional: separate config for production.
 # [env.production.vars]
 # FIREBASE_PROJECT_ID = "sfbc-website"
