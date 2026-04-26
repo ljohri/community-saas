@@ -227,3 +227,10 @@ dist/
 .DS_Store
 *.tsbuildinfo
 
+# Site crawler output (keep out of public repo)
+snapshot_output/
+snapshot_bundle.zip
+
+# Python venv for crawler
+.venv/
+

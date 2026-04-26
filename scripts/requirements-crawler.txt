@@ -1,0 +1,4 @@
+# Python deps for scripts/site_snapshot_mapper.py only.
+# Install: pip install -r scripts/requirements-crawler.txt
+requests>=2.31.0
+beautifulsoup4>=4.12.0

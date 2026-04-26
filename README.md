@@ -76,8 +76,9 @@ Run the dev server (frontend + API):
 npm run cf:dev
 ```
 
-This boots `wrangler pages dev` on **http://localhost:8788**. Wrangler proxies
-`/api/*` to your Pages Functions and serves the frontend through Vite.
+This builds the app and then boots `wrangler pages dev` on
+**http://localhost:8788**, serving `dist/` plus Pages Functions.
+On Wrangler v4 this avoids the proxy-command conflict.
 
 Run frontend only (no API) if you just want to iterate on UI:
 
@@ -194,7 +195,8 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Visit <http://localhost:8788>. Source is volume-mounted, so edits hot-reload.
+Visit <http://localhost:8788>. Source is volume-mounted.
+If you change frontend code, restart the container to rebuild `dist/`.
 
 > Migrations are not run automatically. From the host:
 > `npm run db:migrate:local`. Or open a shell in the container with
