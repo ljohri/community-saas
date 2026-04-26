@@ -1,0 +1,17 @@
+services:
+  community-site:
+    build: .
+    image: community-site:dev
+    container_name: community-site
+    env_file:
+      - .env
+    environment:
+      # Allow wrangler to bind on all interfaces inside the container.
+      WRANGLER_LOG: log
+    ports:
+      - "8788:8788"
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run cf:dev

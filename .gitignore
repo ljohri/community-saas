@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node / Vite / Cloudflare
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env.local
+.env.production
+.DS_Store
+*.tsbuildinfo
+

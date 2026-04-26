@@ -1,0 +1,42 @@
+{
+  "name": "community-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-cost serverless community membership site (Cloudflare Pages + D1 + Firebase Auth).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "cf:dev": "wrangler pages dev --compatibility-date=2024-11-01 --d1=DB --port=8788 -- npm run dev",
+    "cf:build": "npm run build",
+    "cf:deploy": "npm run build && wrangler pages deploy dist",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "db:console:local": "wrangler d1 execute DB --local --command",
+    "db:console:remote": "wrangler d1 execute DB --remote --command",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "firebase": "^10.14.1",
+    "jose": "^5.9.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241112.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.5",
+    "wrangler": "^3.86.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

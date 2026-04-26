@@ -1,0 +1,28 @@
+name = "community-site"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+# Public, non-secret config available to functions via env.*
+[vars]
+# Set the Firebase project ID here so the worker can verify ID tokens.
+# Override per environment (e.g. staging/production) below.
+FIREBASE_PROJECT_ID = ""
+
+# D1 binding. Create the database with:
+#   wrangler d1 create community-site-db
+# then paste the returned database_id here.
+[[d1_databases]]
+binding = "DB"
+database_name = "community-site-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# Optional: separate config for production.
+# [env.production.vars]
+# FIREBASE_PROJECT_ID = "your-prod-firebase-project"
+#
+# [[env.production.d1_databases]]
+# binding = "DB"
+# database_name = "community-site-db"
+# database_id = "REPLACE_WITH_PROD_D1_DATABASE_ID"
+# migrations_dir = "migrations"
