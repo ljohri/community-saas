@@ -223,6 +223,40 @@ environment for the Pages project.
 When you're ready, point your custom domain at the Pages project under
 **Custom domains** and update Firebase **Authorized domains** to match.
 
+### Snapshot import (R2)
+
+Crawled files live in the private repo `treasurer-sfbc/sfbc_site` (`assets/`,
+`pages/`, `reports/mapping.csv`). The importer uploads each `mapping.csv` row
+with `status_code=200` and `target_bucket=r2_private` into the **`sfbc`**
+bucket using keys `snapshot/{public|member}/<path>` (member wins when the same
+path appears under both visibilities).
+
+**GitHub Actions** (`.github/workflows/import-snapshot-r2.yml`):
+
+| Secret | Purpose |
+| ------ | ------- |
+| `R2_ACCOUNT_ID` | Cloudflare account ID (R2 dashboard) |
+| `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | R2 **S3 API** token with read/write on bucket `sfbc` |
+| `SFBC_SITE_GITHUB_TOKEN` | PAT (fine-grained: **Contents: Read** on `treasurer-sfbc/sfbc_site`) so Actions can clone the private snapshot repo |
+
+Run **Actions → Import snapshot to R2 → Run workflow** after you push crawl
+output to `sfbc_site`. The workflow uploads `snapshot/_manifest.json` when
+done.
+
+**Optional cross-repo trigger:** in `sfbc_site`, add a workflow that calls the
+[repository dispatch API](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event)
+on `ljohri/community-saas` with `event_type: sfbc_site_push` and
+`client_payload: { "ref": "<branch-or-sha>" }`, using a token that has
+**Actions** access to this repo (store the token as a secret on `sfbc_site`).
+
+**Local run** (after `pip install -r scripts/requirements-importer.txt`):
+
+```bash
+export R2_ACCOUNT_ID=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=…
+npm run import:snapshot:r2 -- --site-root ../sfbc_site --dry-run
+npm run import:snapshot:r2 -- --site-root ../sfbc_site
+```
+
 ---
 
 ## 6. API summary

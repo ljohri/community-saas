@@ -17,7 +17,8 @@
     "db:console:remote": "wrangler d1 execute DB --remote --command",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "import:snapshot:r2": "python3 scripts/import_snapshot_r2.py"
   },
   "dependencies": {
     "firebase": "^10.14.1",

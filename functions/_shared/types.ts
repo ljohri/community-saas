@@ -2,6 +2,8 @@
 
 export interface Env {
   DB: D1Database;
+  /** R2 bucket for crawled snapshot files (see scripts/import_snapshot_r2.py). Omitted in some local dev runs unless you pass `--r2`. */
+  CONTENT_BUCKET?: R2Bucket;
   FIREBASE_PROJECT_ID: string;
 }
 
